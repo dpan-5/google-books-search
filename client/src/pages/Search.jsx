@@ -1,4 +1,7 @@
+import BookResultCard from '../components/BookResultCard';
+
 export default function Search() {
+
   return (
     <div className="container">
       <div className="row">
@@ -19,6 +22,21 @@ export default function Search() {
           </form>
         </div>
       </div>
+
+      <div className="row">
+          <div className="col-sm-10 offset-sm-1">
+              <div style={{marginTop: '40px', padding: '20px', border:'1px solid lightgrey', width: '100%', height: 'auto'}}>
+                  <h2>Results</h2>
+                  <BookResultCard />
+              </div>
+          </div>
+      </div>
+
+
+
+
     </div>
+    
+    
   );
 }
