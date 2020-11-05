@@ -10,7 +10,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/my-mern", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -27,11 +27,8 @@ connection.on("error", (err) => {
   console.log("Mongoose connection error: ", err);
 });
 
-app.get("/api/config", (req, res) => {
-  res.json({
-    success: true,
-  });
-});
+const booksController = require('./controllers/booksController');
+app.use(booksController);
 
 app.listen(PORT, () => {
   console.log(`App is running on http://localhost:${PORT}`);
