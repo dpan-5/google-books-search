@@ -1,23 +1,32 @@
 import { useState } from "react";
-import API from '../utils/API';
+import API from "../utils/API";
 
 export default function BookResultCard({
+  bookId,
   title,
   authors,
   description,
   image,
   link,
+  favoriteBook,
+  loadBooks
 }) {
   const [book, setBook] = useState({
+    bookId,
     title,
     authors,
     description,
     image,
-    link
+    link,
   });
 
   const handleSave = () => {
     API.saveBook(book);
+  };
+
+  const handleDelete = () => {
+    API.deleteBook(book.bookId);
+    loadBooks();
   }
 
   return (
@@ -52,14 +61,25 @@ export default function BookResultCard({
           >
             View
           </button>
-          <button
-            type="button"
-            className="btn btn-secondary"
-            style={{ margin: "30px" }}
-            onClick={handleSave}
-          >
-            Save
-          </button>
+          {favoriteBook === undefined ? (
+            <button
+              type="button"
+              className="btn btn-secondary"
+              style={{ margin: "30px" }}
+              onClick={handleSave}
+            >
+              Save
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="btn btn-secondary"
+              style={{ margin: "30px" }}
+              onClick={handleDelete}
+            >
+              Delete
+            </button>
+          )}
         </div>
       </div>
     </div>

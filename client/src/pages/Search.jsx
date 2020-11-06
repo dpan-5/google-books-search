@@ -6,12 +6,6 @@ export default function Search() {
   const [search, setSearch] = useState("");
   const [booksSearchResults, setBooksSearchResults] = useState([]);
 
-  //   useEffect(() => {
-  //     API.bookSearch()
-  //       .then((res) => setBooksSearchResults(res.data))
-  //       .catch((err) => console.log(err));
-  //   }, []);
-
   const handleInputChange = (event) => {
     const { value } = event.target;
     setSearch(value);
@@ -64,6 +58,7 @@ export default function Search() {
               : booksSearchResults.map((book) => {
                   return (
                     <BookResultCard
+                      bookId={book.id}
                       title={book.volumeInfo.title}
                       authors={book.volumeInfo.authors}
                       description={book.volumeInfo.description}
